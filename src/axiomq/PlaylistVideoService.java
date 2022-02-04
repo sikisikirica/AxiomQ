@@ -8,44 +8,39 @@ import java.util.ArrayList;
  */
 public class PlaylistVideoService {
 
-    private ArrayList<Video> playlist = new ArrayList<>();
-
-    public ArrayList<Video> getPlaylist() {
-        return this.playlist;
-    }
+    public Playlist playlist;
 
     public void addVideo(Video v) {
-
-        this.playlist.add(v);
+        playlist.videos.add(v);
         System.out.println(v.name + " added to playlist");
     }
 
-    public void removeVideo(Video v) {
+    public void removeVideo(Video v, Playlist pl) {
 
-        this.playlist.remove(v);
+        pl.videos.remove(v);
         System.out.println(v.name + " removed from playlist");
     }
 
-    public void changeOrder(int index, Video v) {
+    public void changeOrder(int index, Video v, Playlist pl) {
 
         ArrayList<Video> playlistCopy = new ArrayList<>();
-        playlistCopy.addAll(this.playlist);
+        playlistCopy.addAll(pl.videos);
         try {
-            playlist.remove(v);
-            playlist.add(index -1, v);
+            pl.videos.remove(v);
+            pl.videos.add(index - 1, v);
             System.out.println(v.name + " changed position to " + (index));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid index!");
-            this.playlist = playlistCopy;
+            System.out.println("Invalid index");
+            pl.videos = playlistCopy;
         }
 
     }
 
-    public void printList() {
+    public void printList(Playlist pl) {
 
         StringBuilder sb = new StringBuilder();
-        for (Video s : playlist) {
-            sb.append(playlist.indexOf(s) + 1).append(". ");
+        for (Video s : pl.videos) {
+            sb.append(pl.videos.indexOf(s) + 1).append(". ");
             sb.append(s.name);
             sb.append("\t");
         }

@@ -1,6 +1,8 @@
 
 package axiomq;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sikirica
@@ -22,30 +24,33 @@ public class AxiomQ {
         Video v8 = new Video("8", "Fail Video");
         Video v9 = new Video("9", "Documentary Video");
         Video v10 = new Video("10", "Awesome Video");
-         
-
+        
+        ArrayList<Video> list = new ArrayList<>();
+        list.add(v1);
+        User user = new User();
+        
         PlaylistVideoService pvs = new PlaylistVideoService();
+        Playlist pl = new Playlist("1","123",user,list);
+   
+        pl.videos.add(v2);
+        pl.videos.add(v3);
+        pl.videos.add(v4);
+        pl.videos.add(v5);
+        pl.videos.add(v6);
+        pl.videos.add(v7);
+        pl.videos.add(v8);
+        pl.videos.add(v9);
+        pl.videos.add(v10);
 
-        pvs.addVideo(v1);
-        pvs.addVideo(v2);
-        pvs.addVideo(v3);
-        pvs.addVideo(v4);
-        pvs.addVideo(v5);
-        pvs.addVideo(v6);
-        pvs.addVideo(v7);
-        pvs.addVideo(v8);
-        pvs.addVideo(v9);
-        pvs.addVideo(v10);
+        pvs.printList(pl);
 
-        pvs.printList();
+        pvs.removeVideo(v5,pl);
 
-        pvs.removeVideo(v5);
+        pvs.printList(pl);
 
-        pvs.printList();
+        pvs.changeOrder(1, v7, pl);
 
-        pvs.changeOrder(2, v7);
-
-        pvs.printList();
+        pvs.printList(pl);
 
     }
 
