@@ -1,4 +1,3 @@
-
 package axiomq;
 
 import java.util.ArrayList;
@@ -9,9 +8,9 @@ import java.util.ArrayList;
  */
 public class PlaylistVideoService {
 
-    ArrayList<Video> playlist = new ArrayList<>();
+    private ArrayList<Video> playlist = new ArrayList<>();
 
-    public ArrayList getPlaylist() {
+    public ArrayList<Video> getPlaylist() {
         return this.playlist;
     }
 
@@ -22,7 +21,7 @@ public class PlaylistVideoService {
     }
 
     public void removeVideo(Video v) {
-        
+
         this.playlist.remove(v);
         System.out.println(v.name + " removed from playlist");
     }
@@ -33,8 +32,8 @@ public class PlaylistVideoService {
         playlistCopy.addAll(this.playlist);
         try {
             playlist.remove(v);
-            playlist.add(index, v);
-            System.out.println(v.name + " changed position to " + (index + 1));
+            playlist.add(index -1, v);
+            System.out.println(v.name + " changed position to " + (index));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Invalid index!");
             this.playlist = playlistCopy;
@@ -43,7 +42,7 @@ public class PlaylistVideoService {
     }
 
     public void printList() {
-        
+
         StringBuilder sb = new StringBuilder();
         for (Video s : playlist) {
             sb.append(playlist.indexOf(s) + 1).append(". ");
